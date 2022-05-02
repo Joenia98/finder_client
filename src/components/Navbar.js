@@ -16,10 +16,11 @@ export default function Employeesmod() {
               </Link>
             </Typography>
             </Grid>
-            <Grid item xs={8}></Grid>
-            <Grid item xs={1}>
+            <Grid item xs={7}></Grid>
+            <Grid item xs={1} mt={1}>
                 <AccountMenu/>
             </Grid>
+            <Grid item xs={1}></Grid>
             </Grid>
           </Toolbar>
         </Container>
