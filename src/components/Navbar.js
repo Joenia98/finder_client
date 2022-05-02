@@ -1,22 +1,29 @@
-import { AppBar, Box, Container, Toolbar, Typography, } from "@mui/material";
-import {Link} from "react-router-dom";
+import { AppBar, Box, Container, Toolbar, Typography, Grid } from "@mui/material";
+import { Link } from "react-router-dom";
+import AccountMenu from "./Usermenu"
 
-
-export default function Employeesmod(){
-    
-    return (
-        <Box sx={{ flexGrow: 1}}>
-            <AppBar position="static" color="default">
-                <Container>
-                    <Toolbar>
-                        <Typography variant="h6" sx={{ flexGrow: 1}}>
-                           <Link to="/" style={{textDecoration:'none'}}>Finder Project</Link> 
-                        </Typography>
-                        
-                    </Toolbar>   
-                </Container>
-            </AppBar>
-
-        </Box>
-    )
+export default function Employeesmod() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" color="default">
+        <Container>
+          <Toolbar>
+          <Grid container spacing={1}>
+          <Grid item xs={3}>
+            <Typography mt={.5} variant="h6" sx={{ flexGrow: 1 }}>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Employee Lists Project
+              </Link>
+            </Typography>
+            </Grid>
+            <Grid item xs={8}></Grid>
+            <Grid item xs={1}>
+                <AccountMenu/>
+            </Grid>
+            </Grid>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </Box>
+  );
 }

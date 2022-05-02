@@ -9,17 +9,26 @@ import {
   DialogTitle,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { gql, useMutation} from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 const UDATE_EMPLOYEE = gql`
-  mutation UpdateEmployee($id: ID!, $name: String, $lname: String, $email: String, $phone: String) {
-  updateEmployee(id: $id, employee:{
-    first_name:$name,
-    last_name:$lname,
-    email:$email,
-    phone:$phone,
-  } )
-}
+  mutation UpdateEmployee(
+    $id: ID!
+    $name: String
+    $lname: String
+    $email: String
+    $phone: String
+  ) {
+    updateEmployee(
+      id: $id
+      employee: {
+        first_name: $name
+        last_name: $lname
+        email: $email
+        phone: $phone
+      }
+    )
+  }
 `;
 
 const GET_EMPLOYEES = gql`
@@ -38,7 +47,6 @@ const GET_EMPLOYEES = gql`
 `;
 
 export default function Employeesmod(employee) {
-
   const [name, setName] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
@@ -46,9 +54,9 @@ export default function Employeesmod(employee) {
   const [id, setId] = useState("");
   const [open, setOpen] = React.useState(false);
   const modifie = employee.value;
-  const [updateEmployee] = useMutation(UDATE_EMPLOYEE,{refetchQueries:[
-    { query: GET_EMPLOYEES }
-  ]});
+  const [updateEmployee] = useMutation(UDATE_EMPLOYEE, {
+    refetchQueries: [{ query: GET_EMPLOYEES }],
+  });
 
   const handleClickOpen = () => {
     setId(modifie.id);
@@ -67,18 +75,16 @@ export default function Employeesmod(employee) {
     setOpen(false);
   };
 
-  const handleChange = async() => {
-    try{
-      updateEmployee({ variables: {id, name, lname, email, phone } });
-
+  const handleChange = async () => {
+    try {
+      updateEmployee({ variables: { id, name, lname, email, phone } });
+    } catch (e) {
+      console.warn(e);
     }
-    catch(e) {
-       console.warn(e) 
-      }
-      setName("");
-      setLname("");
-      setEmail("");
-      setPhone("");
+    setName("");
+    setLname("");
+    setEmail("");
+    setPhone("");
     setOpen(false);
   };
 
@@ -141,7 +147,6 @@ export default function Employeesmod(employee) {
           <TextField
             autoFocus
             margin="dense"
-            
             variable="phone"
             label="Phone"
             sx={{ m: 1, width: "15ch" }}

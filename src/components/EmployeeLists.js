@@ -1,6 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import Employeesmod  from "./ModifieEmployees";
+import Employeesmod from "./ModifieEmployees";
 import {
   Box,
   CircularProgress,
@@ -30,7 +30,6 @@ const GET_EMPLOYEES = gql`
 `;
 
 function EployeeLists() {
-
   //Obtencion de la lista de empleados
   const { data, loading, error } = useQuery(GET_EMPLOYEES);
 
@@ -38,7 +37,6 @@ function EployeeLists() {
 
   return (
     <Grid container spacing={2} justifyContent="center">
-     
       <Grid item xs={10}>
         {loading ? (
           <Box sx={{ zIndex: "tooltip" }}>
@@ -67,20 +65,14 @@ function EployeeLists() {
                       <TableCell component="th" scope="row" align="center">
                         {employee.first_name}
                       </TableCell>
-                      <TableCell align="center">
-                        {employee.last_name}
-                      </TableCell>
-                      <TableCell align="center">
-                        {employee.email}
-                      </TableCell>
-                      <TableCell align="center">
-                        {employee.phone}
-                      </TableCell>
+                      <TableCell align="center">{employee.last_name}</TableCell>
+                      <TableCell align="center">{employee.email}</TableCell>
+                      <TableCell align="center">{employee.phone}</TableCell>
                       <TableCell align="center">
                         {employee.nationality}
                       </TableCell>
                       <TableCell align="center">
-                        <Employeesmod value={employee}/>
+                        <Employeesmod value={employee} />
                       </TableCell>
                     </TableRow>
                   ))}
